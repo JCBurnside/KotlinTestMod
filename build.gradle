@@ -58,7 +58,3 @@ processResources {
         exclude 'mcmod.info'
     }
 }
-
-sourceSets {
-    main.java.srcDirs += 'src/main/kotlin'
-}
