@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import org.apache.logging.log4j.Logger
 import java.util.*
 
-const val VERSION = "@VERSION@"
+const val VERSION = "@version@"
 const val MOD_NAME = "TestMod"
 const val MOD_ID = "test_mod"
 
