@@ -16,7 +16,10 @@ buildscript {
 
 repositories {
     jcenter()
-    maven { name="forgelin"; url "http://maven.shadowfacts.net/" }
+    maven { name= "forgelin"; url="http://maven.shadowfacts.net/" }
+    maven { url = "http://maven.tterrag.com/" }
+    maven { url = "https://files.minecraftforge.net/maven" }
+
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
@@ -25,22 +28,25 @@ apply plugin: 'net.intellisun.moddependencies'
 
 dependencies {
     compile "net.shadowfacts:Forgelin:$forgelin_version"
+    compile("appeng:appliedenergistics2:${ae_dep_version}:api")
+    {
+        transitive false
+    }
+
 }
 
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
-
-version = "1.0-SNAPSHOT"
 
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8 // Need this here so eclipse task generates correctly.
 
 modDependencies
-        {
-            forge { requireAfter(forge_version) }
-            endercore { requireAfter(enderio_version) }
-            appliedenergistics { loadAfter(ae_dep_version)}
-        }
+{
+    forge { requireAfter(forge_version) }
+    endercore { requireAfter(enderio_version) }
+    appliedenergistics { loadAfter(ae_dep_version)}
+}
 
 
 minecraft {
@@ -48,13 +54,13 @@ minecraft {
     runDir = "run"
     mappings = mcp_mappings
     makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
-    replace "@VERSION@", version
+    replace "@version@", mod_version
 }
 
 processResources {
-    // this will ensure that this task is redone when the versions change.
+
     inputs.property "version", project.version
-    inputs.property "MC_VERSION", mc_version
+    inputs.property "mcversion", project.minecraft.version
 
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
@@ -64,8 +70,10 @@ processResources {
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
 
+
     // copy everything else except the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
+    from(sourceSets.main.resources.srcDirs)
+    {
         exclude 'mcmod.info'
     }
 }

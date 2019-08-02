@@ -5,7 +5,7 @@ import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 
 
-@Mod.EventBusSubscriber(modid = MOD_ID)
+@Mod.EventBusSubscriber(modid = TestMod.MOD_ID)
 object RegistryHandler {
 
     @JvmStatic

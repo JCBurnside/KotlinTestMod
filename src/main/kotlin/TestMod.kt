@@ -12,19 +12,21 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import org.apache.logging.log4j.Logger
 import java.util.*
 
-const val VERSION = "@VERSION@"
-const val MOD_NAME = "TestMod"
-const val MOD_ID = "test_mod"
-
 var  logger:Logger? = null
 
 @Mod(
-    version = VERSION,
-    name = MOD_NAME,
-    modid = MOD_ID,
-    modLanguageAdapter="net.shadowfacts.forgelin.KotlinAdapter"
+    version = TestMod.VERSION,
+    name = TestMod.MOD_NAME,
+    modid = TestMod.MOD_ID,
+    modLanguageAdapter="net.shadowfacts.forgelin.KotlinAdapter"/*,
+    dependencies = "@dependencies@"*/
 )
 object TestMod {
+
+    const val VERSION = "@version@"
+    const val MOD_NAME = "TestMod"
+    const val MOD_ID = "test_mod"
+
     @Mod.EventHandler
     fun preInit(event: FMLPreInitializationEvent)
     {
@@ -35,7 +37,7 @@ object TestMod {
 val objEx = object:Item(){
     init {
         unlocalizedName = "test"
-        registryName = ResourceLocation(MOD_ID,"test")
+        registryName = ResourceLocation(TestMod.MOD_ID,"test")
         creativeTab = tabEx
     }
 }
@@ -45,7 +47,7 @@ val blockEx = object:Block(Material.ROCK)
     init
     {
         unlocalizedName = "test_block"
-        registryName = ResourceLocation(MOD_ID,"test_block")
+        registryName = ResourceLocation(TestMod.MOD_ID,"test_block")
         setCreativeTab(tabEx)
     }
 
