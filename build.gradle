@@ -9,7 +9,7 @@ buildscript {
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}"
         classpath "gradle.plugin.net.intellisun:modDependencies:1.0.1-alpha.2"
     }
 }
@@ -37,7 +37,6 @@ dependencies {
 
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8 // Need this here so eclipse task generates correctly.
 
@@ -48,13 +47,20 @@ modDependencies
     appliedenergistics { loadAfter(ae_dep_version)}
 }
 
+compileKotlin {
+    kotlinOptions.jvmTarget = '1.8'
+}
+
+version = "1.0.0-SANPSHOT"
+group = "org.testmod"
+archivesBaseName = "TestMod"
 
 minecraft {
     version = mc_version + "-" + forge_version
     runDir = "run"
     mappings = mcp_mappings
-    makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
-    replace "@version@", mod_version
+//    makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+    replace "@VERSION@", version
 }
 
 processResources {
